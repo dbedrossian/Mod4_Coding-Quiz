@@ -13,16 +13,35 @@
     <div class="scores"></div>
     <div class="timer"></div>
     <div class="wrapper">
+        <div id="start-page">
+            <h1>Orchestra Quiz</h1>
+            <h2 id="startPage">Click below to begin!</h2>
+        </div>
         <div id="quiz">
-            <h1>Orchestral Instruments Quiz</h1>
-            <p class="questions"></p>
-            <div class="answers"></div>
+            <h1>Orchestra Quiz</h1>
+            <h2 id="questions">Question</h2>
+            <div>
+                <ul class="no-bullets">
+                    <li class="answers" id="A">A</li>
+                    <li class="answers" id="B">B</li>
+                    <li class="answers" id="C">C</li>
+                    <li class="answers" id="D">D</li>
+                </ul>
+            </div>
             <div class="checkAnswers">
-                <h3>Correct?</h3>
+                <h3 id="Correct">Correct</h3>
+                <h3 id="Incorrect">Incorrect</h3>
                 <div class="checker">
                 </div>
             </div>
         </div>
+        <div id="finish">
+            <h1 id="Summary">Summary</h1>
+            <h2 id="endMessage">You earned points</h2>
+        </div>
+    </div>
+    <div id="start">
+        <button id="gameStart">Start Game</button>
     </div>
     <script src="./assets/script.js"></script>
 </body>

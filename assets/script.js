@@ -51,31 +51,31 @@ const trivia = [
 }
 ]
 
-// document.getElementById("quiz").style.display = "none";
-// document.getElementById("Correct").style.display = "none";
-// document.getElementById("Incorrect").style.display = "none";
-// document.getElementById("finish").style.display = "none";
+document.getElementById("quiz").style.display = "none";
+document.getElementById("Correct").style.display = "none";
+document.getElementById("Incorrect").style.display = "none";
+document.getElementById("finish").style.display = "none";
 
-// var timeEl = document.querySelector(".timer");
-// var secondsLeft = 300;
+var timeEl = document.querySelector(".timer");
+var secondsLeft = 300;
 
-// document.getElementById("gameStart").addEventListener("click", function startTimer(){
-//   var timerInterval = setInterval(function() {
-//     secondsLeft--;
-//     timeEl.textContent = 'Points: ' + secondsLeft;
-//     document.getElementById("gameStart").style.display = "none";
-//     document.getElementById("quiz").style.display = "block";
-//     document.getElementById("start-page").style.display = "none";
+document.getElementById("gameStart").addEventListener("click", function startTimer(){
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeEl.textContent = 'Points: ' + secondsLeft;
+    document.getElementById("gameStart").style.display = "none";
+    document.getElementById("quiz").style.display = "block";
+    document.getElementById("start-page").style.display = "none";
     
-//     if(secondsLeft === 0) {
-//       clearInterval(timerInterval);
-//     document.getElementById("finish").style.display = "block";
-//     document.getElementById("endMessage").textContent = 'You earned ' + secondsLeft + ' points';
-//     document.getElementById("quiz").style.display = "none";
+    if(secondsLeft === 0) {
+      clearInterval(timerInterval);
+    document.getElementById("finish").style.display = "block";
+    document.getElementById("endMessage").textContent = 'You earned ' + secondsLeft + ' points';
+    document.getElementById("quiz").style.display = "none";
 
-//     }
-//   }, 1000);
-// });
+    }
+  }, 1000);
+});
 
 
 
@@ -91,9 +91,13 @@ var currentQuestionIndex
 
 
 startButton.addEventListener('click', startGame)
+nextButton.addEventListener('click', ()=>{
+    currentQuestionIndex++
+    nextQuestion()
+    setStatusClass()
+})
 
 function startGame(){
-    console.log("started");
     startButton.classList.add('hide')
     startPage.classList.add('hide')
     shuffledQuestions = trivia.sort(() => Math.random() - .5)
@@ -105,6 +109,7 @@ function startGame(){
 function nextQuestion(){
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
+
 }
 
 function resetState (){
@@ -128,36 +133,31 @@ function showQuestion(question){
     });
 }
 
-function selectAnswer(){
-
+function selectAnswer(e){
+    const selectedButton = e.target
+    const correct = selectedButton.dataset.correct
+    setStatusClass(document.body, correct)
+    Array.from(answerButtonsElement.children).forEach(button => {setStatusClass(button, button.dataset.correct)})
+    if (shuffledQuestions.length > currentQuestionIndex +1){
+        nextButton.classList.remove('hide')
+    } else {
+        startButton.innerText = 'restart'
+        startButton.classList.remove('hide')
+    }
 }
 
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if(correct) {
+        element.classList.add('correct')
+    } else {
+        element.classList.add('incorrect')
+    }
+}
 
-
-
-
-
-
-
-
-// function askQuestion(trivia) {
-// for (let i = 0; i < trivia.length; i++)
-
-//     var questions = document.getElementById("questions");
-//     questions.textContent = trivia[0].question;
-
-//     var answers = document.querySelectorAll(".answers");
-//     answers.forEach(function (element, index) {
-//         element.textContent = trivia[0].answers[index];
-//     })
-
-// document.querySelector(".no-bullets").addEventListener("click", function(event){
-//     if (event.target.textContent === trivia.correctAnswer) {
-//         console.log(event.target.textContent);
-//     }
-// })
-
-// }
-
+function clearStatusClass(element){
+    element.classList.remove('correct')
+    element.classList.remove('incorrect')
+}
 
 

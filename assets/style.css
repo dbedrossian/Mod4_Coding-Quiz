@@ -30,13 +30,17 @@
 .answers{
     border-top: 2px dotted grey;
     border-bottom: 2px dotted grey;
+    border-right: 0px;
+    border-left: 0px;
     margin: 0px 20px;
     font-size: 22px;
     padding: 3px;
+    background-color: darkblue;
+    color: lightblue;
   }
 
 .answers:hover{
-    background-color: lightgreen;
+    background-color: rgb(98, 218, 255);
     color: darkslategray;
     cursor: pointer;
 }
@@ -93,6 +97,15 @@ h1 {
 
 .hide {
     display: none;
+}
+
+
+.correct {
+    background-color: green;
+}
+
+.incorrect {
+    background-color: red;
 }
 
 

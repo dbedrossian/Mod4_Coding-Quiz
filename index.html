@@ -17,11 +17,11 @@
             <h1>Orchestra Quiz</h1>
             <h2 id="startPage">Click below to begin!</h2>
         </div>
-        <div id="quiz">
+        <div id="quiz" class="hide">
             <h1>Orchestra Quiz</h1>
             <h2 id="questions">Question</h2>
             <div>
-                <ul class="no-bullets">
+                <ul id="answerButtons">
                     <li class="answers" id="A">A</li>
                     <li class="answers" id="B">B</li>
                     <li class="answers" id="C">C</li>
@@ -29,19 +29,20 @@
                 </ul>
             </div>
             <div class="checkAnswers">
-                <h3 id="Correct">Correct</h3>
-                <h3 id="Incorrect">Incorrect</h3>
+                <h3 id="Correct" class="hide">Correct</h3>
+                <h3 id="Incorrect" class="hide">Incorrect</h3>
                 <div class="checker">
                 </div>
             </div>
         </div>
-        <div id="finish">
+        <div id="finish" class="hide">
             <h1 id="Summary">Summary</h1>
             <h2 id="endMessage">You earned points</h2>
         </div>
     </div>
     <div id="start">
         <button id="gameStart">Start Game</button>
+        <button id="gameNext" class="hide">Next</button>
     </div>
     <script src="./assets/script.js"></script>
 </body>

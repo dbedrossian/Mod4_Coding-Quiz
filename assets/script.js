@@ -57,7 +57,7 @@ document.getElementById("Incorrect").style.display = "none";
 document.getElementById("finish").style.display = "none";
 
 var timeEl = document.querySelector(".timer");
-var secondsLeft = 30;
+var secondsLeft = 60;
 var timerInterval
 
 document.getElementById("gameStart").addEventListener("click", function startTimer(){
@@ -186,21 +186,52 @@ var signUpButton = document.querySelector("#enter")
 
 
 
-signUpButton.addEventListener('click', function(event) {
-    event.preventDefault();
+// signUpButton.addEventListener('click', function(event) {
+//     event.preventDefault();
 
+//     var myArr = []
+//     var user = {
+//         initials: initialsInput.value.trim(),
+//         score: secondsLeft
+//     };
+
+//     // myArr.push(user)
+//     localStorage.setItem("user", JSON.stringify(user))
+//     JSON.parse(localStorage.getItem("user"))
+
+//     document.getElementById("highScores").innerText = user.initials + " - " + user.score;
+
+// })
+
+function saveLastScore() {
     var myArr = []
     var user = {
         initials: initialsInput.value.trim(),
-        score: secondsLeft
-    };
-
+        score: secondsLeft.valueOf()
+    }
     myArr.push(user)
-    JSON.parse(localStorage.getItem("user"))
-
     localStorage.setItem("user", JSON.stringify(user))
+    JSON.parse(localStorage.getItem("user")) 
+}
 
-    document.getElementById("highScores").innerText = user.initials + " - " + user.score;
 
+function renderLastScore() {
+    var lastScore = JSON.parse(localStorage.getItem("user"));
+    if (lastScore !== null) {
+        document.getElementById("highScores").innerHTML = lastScore.initials + " - " + lastScore.score;        
+    } else {
+        return;
+    }
+}
 
-})
+signUpButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    saveLastScore();
+    renderLastScore()
+}
+)
+
+function init() {
+    renderLastScore()
+}
+init();

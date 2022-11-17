@@ -57,7 +57,8 @@ document.getElementById("Incorrect").style.display = "none";
 document.getElementById("finish").style.display = "none";
 
 var timeEl = document.querySelector(".timer");
-var secondsLeft = 300;
+var secondsLeft = 30;
+var timerInterval
 
 document.getElementById("gameStart").addEventListener("click", function startTimer(){
   var timerInterval = setInterval(function() {
@@ -67,7 +68,12 @@ document.getElementById("gameStart").addEventListener("click", function startTim
     document.getElementById("quiz").style.display = "block";
     document.getElementById("start-page").style.display = "none";
     
-    if(secondsLeft === 0) {
+    if(currentQuestionIndex===4){
+        clearInterval(timerInterval)
+        document.getElementById("timer")
+    }
+
+    else if(secondsLeft === 0) {
       clearInterval(timerInterval);
     document.getElementById("finish").style.display = "block";
     document.getElementById("endMessage").textContent = 'You earned ' + secondsLeft + ' points';
@@ -85,6 +91,7 @@ const nextButton = document.getElementById('gameNext')
 const questionContainerElement = document.getElementById('quiz')
 const questionElement = document.getElementById('questions')
 const answerButtonsElement = document.getElementById('answerButtons')
+const finishPage = document.getElementById('finish')
 
 var shuffledQuestions
 var currentQuestionIndex
@@ -94,6 +101,7 @@ startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', ()=>{
     currentQuestionIndex++
     nextQuestion()
+    clearStatusClass(document.body)
     setStatusClass()
 })
 
@@ -141,8 +149,7 @@ function selectAnswer(e){
     if (shuffledQuestions.length > currentQuestionIndex +1){
         nextButton.classList.remove('hide')
     } else {
-        startButton.innerText = 'restart'
-        startButton.classList.remove('hide')
+        endScreen()
     }
 }
 
@@ -152,6 +159,7 @@ function setStatusClass(element, correct) {
         element.classList.add('correct')
     } else {
         element.classList.add('incorrect')
+        deductTimer()
     }
 }
 
@@ -160,4 +168,15 @@ function clearStatusClass(element){
     element.classList.remove('incorrect')
 }
 
+function deductTimer(){
+    secondsLeft--
+}
 
+function endScreen(){
+    clearInterval(timerInterval);
+    document.getElementById("finish").style.display = "block";
+    document.getElementById("endMessage").textContent = 'You earned ' + secondsLeft + ' points';
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("timer").style.display = "none";
+    console.log("end screen");
+}

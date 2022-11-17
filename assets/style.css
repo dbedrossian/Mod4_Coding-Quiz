@@ -2,7 +2,7 @@
     background-color: orange;
 }
 
-.timer{
+#timer{
     color: black;
     font-weight: bold;
     border-radius: 75px solid black;
@@ -57,20 +57,18 @@
 h1 {
     padding-top: 40px;
 }
-
+/* 
 #timer{
-    text-align: right;
-}
+    text-align: right; */
+/* } */
 
-#gameStart {
-    display: block;
-    align-content: center;
-}
-
-.start button {
-    font-size: 24px;
+#start button {
+    font-size: 20px;
     font-weight: bold;
-    border-radius: 15px;;
+    border-radius: 6px;
+    background-color: lightblue;
+    color: black;
+    min-width: 100px;
 }
 
 #start-page {

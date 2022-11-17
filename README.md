@@ -23,7 +23,7 @@ This is a **multiple choice quiz** that tests your knowledge of orchestral instr
 Check out the link to the website:
 
 
-https://dbedrossian.github.io/Mod3_Password-Generator/
+https://dbedrossian.github.io/Mod4_Coding-Quiz/
 
 
 ## Usage

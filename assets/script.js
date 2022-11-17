@@ -169,7 +169,7 @@ function clearStatusClass(element){
 }
 
 function deductTimer(){
-    secondsLeft--
+    secondsLeft--;
 }
 
 function endScreen(){
@@ -180,28 +180,10 @@ function endScreen(){
     document.getElementById("timer").style.display = "none";
 }
 
+// storage of scores
 
 var initialsInput = document.querySelector('#initials')
 var signUpButton = document.querySelector("#enter")
-
-
-
-// signUpButton.addEventListener('click', function(event) {
-//     event.preventDefault();
-
-//     var myArr = []
-//     var user = {
-//         initials: initialsInput.value.trim(),
-//         score: secondsLeft
-//     };
-
-//     // myArr.push(user)
-//     localStorage.setItem("user", JSON.stringify(user))
-//     JSON.parse(localStorage.getItem("user"))
-
-//     document.getElementById("highScores").innerText = user.initials + " - " + user.score;
-
-// })
 
 function saveLastScore() {
     var myArr = []
@@ -209,11 +191,10 @@ function saveLastScore() {
         initials: initialsInput.value.trim(),
         score: secondsLeft.valueOf()
     }
-    myArr.push(user)
-    localStorage.setItem("user", JSON.stringify(user))
-    JSON.parse(localStorage.getItem("user")) 
+    myArr.push(user);
+    localStorage.setItem("user", JSON.stringify(user));
+    JSON.parse(localStorage.getItem("user"));
 }
-
 
 function renderLastScore() {
     var lastScore = JSON.parse(localStorage.getItem("user"));

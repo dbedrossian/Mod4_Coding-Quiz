@@ -178,5 +178,29 @@ function endScreen(){
     document.getElementById("endMessage").textContent = 'You earned ' + secondsLeft + ' points';
     document.getElementById("quiz").style.display = "none";
     document.getElementById("timer").style.display = "none";
-    console.log("end screen");
 }
+
+
+var initialsInput = document.querySelector('#initials')
+var signUpButton = document.querySelector("#enter")
+
+
+
+signUpButton.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    var myArr = []
+    var user = {
+        initials: initialsInput.value.trim(),
+        score: secondsLeft
+    };
+
+    myArr.push(user)
+    JSON.parse(localStorage.getItem("user"))
+
+    localStorage.setItem("user", JSON.stringify(user))
+
+    document.getElementById("highScores").innerText = user.initials + " - " + user.score;
+
+
+})
